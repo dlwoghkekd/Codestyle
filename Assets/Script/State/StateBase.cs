@@ -6,6 +6,7 @@ public enum E_StateType
     Game,
 }
 
+// 게임의 상태
 public abstract class StateBase
 {
     public abstract E_StateType StateType { get; } 

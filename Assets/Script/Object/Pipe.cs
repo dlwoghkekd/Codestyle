@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Pipe : Spawnable
 {
+    // 위 파이프
     [SerializeField] private Transform trTop;
+    // 아래 파이프
     [SerializeField] private Transform trBottom;
 
     public float GoalCenterY { get; private set; } = 0f;
 
+    /// <summary>
+    /// 넘어온 센터 위치를 기반으로, 위/아래 파이프 세팅
+    /// </summary>
+    /// <param name="centerY"></param>
     public void SetGoal(float centerY)
     {
         GoalCenterY = centerY;
@@ -17,11 +23,13 @@ public class Pipe : Spawnable
 
         var posTop = trTop.localPosition;
         posTop.y = GoalCenterY + rndHeight;
+        posTop.y = Mathf.Clamp(posTop.y, 0, Constant.OBSTACLE_POS_Y_MIN);
 
         trTop.localPosition = posTop;
 
         var posBottom = trBottom.localPosition;
         posBottom.y = GoalCenterY - rndHeight;
+        posBottom.y = Mathf.Clamp(posBottom.y, -Constant.OBSTACLE_POS_Y_MIN, 0);
 
         trBottom.localPosition = posBottom;
     }
@@ -33,7 +41,7 @@ public class Pipe : Spawnable
 
         if (collision.CompareTag(Constant.TAG_PLAYER) == false)
             return;
-            
+
         GameManager.Instance.Data.AddScore(1);
     }
 

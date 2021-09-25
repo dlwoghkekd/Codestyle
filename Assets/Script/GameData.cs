@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 public class GameData
 {
-    public Action<int> onChangeScore = delegate { };
+    public event Action<int> OnChangeScore = delegate { };
 
     public int Score{ get; private set; }
 
     public void ClearScore()
     {
         Score = 0;
-        onChangeScore?.Invoke(Score);
+        OnChangeScore?.Invoke(Score);
     }
 
     public void AddScore(int score)
     {
         Score += score;
-        onChangeScore?.Invoke(Score);
+        OnChangeScore?.Invoke(Score);
     }
 }

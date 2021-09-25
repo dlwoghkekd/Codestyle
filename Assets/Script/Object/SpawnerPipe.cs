@@ -25,6 +25,7 @@ public class SpawnerPipe : Spawner
 
         if (spawn != null)
         {
+            // 마지막에 스폰된 파이프의 뚫린(?) 지점 참조하여 자연스럽게 다음 골 지점 설정
             var center = Random.Range(privCenter - Constant.PIPE_CENTER_INTERVAL, privCenter + Constant.PIPE_CENTER_INTERVAL);
             center = Mathf.Clamp(center, -Constant.OBSTACLE_POS_Y_MIN, Constant.OBSTACLE_POS_Y_MIN);
 
@@ -51,6 +52,9 @@ public class SpawnerPipe : Spawner
         MoveSpawned();
     }
 
+    /// <summary>
+    /// 관리되는 오브젝트중, 켜져있는 오브젝트만 이동
+    /// </summary>
     private void MoveSpawned()
     {
         foreach (var iter in ListSpawned)

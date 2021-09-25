@@ -10,8 +10,9 @@ public class UIPanelGame : UIPanelBase
     {
         base.OnOpen();
 
-        GameManager.Instance.Data.onChangeScore -= OnChangeScore;
-        GameManager.Instance.Data.onChangeScore += OnChangeScore;
+        // 이벤트를 추가 전, 혹시모를 중복 이벤트를 제거합니다.
+        GameManager.Instance.Data.OnChangeScore -= OnChangeScore;
+        GameManager.Instance.Data.OnChangeScore += OnChangeScore;
 
         OnChangeScore(GameManager.Instance.Data.Score);
     }
@@ -20,7 +21,7 @@ public class UIPanelGame : UIPanelBase
     {
         base.OnClose();
 
-        GameManager.Instance.Data.onChangeScore -= OnChangeScore;
+        GameManager.Instance.Data.OnChangeScore -= OnChangeScore;
     }
 
     private void OnChangeScore(int score)

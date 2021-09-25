@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GameStateManager
 {
+    // 관리되고있는 게임 상태
     private Dictionary<E_StateType, (StateBase state, StateBase next)> dicState =
         new Dictionary<E_StateType, (StateBase state, StateBase next)>();
 
+    // 현재 게임 상태
     public StateBase CurrentState { get; private set; }
 
     public GameStateManager(params StateBase[] states)

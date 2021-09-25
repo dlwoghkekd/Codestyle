@@ -45,6 +45,7 @@ public class SpawnerGround : Spawner
         }
     }
 
+    // 디스폰된 바닥이 있다면 마지막으로 붙여줌
     private void SpawnGround()
     {
         for (int i = 0; i < despawnCount; i++)
